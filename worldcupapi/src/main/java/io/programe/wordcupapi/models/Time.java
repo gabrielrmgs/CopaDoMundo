@@ -37,13 +37,18 @@ public class Time {
     private String nome;
     private String cidade;
     
-    @OneToMany
+    @OneToMany(mappedBy = "clube")
     private List<Jogador> jogadores = new ArrayList<Jogador>();
 
     public Time(String nome, String cidade, List<Jogador> jogadores) {
         this.nome = nome;
         this.cidade = cidade;
         this.jogadores = jogadores;
+    }
+    
+    public Time(String nome, String cidade) {
+        this.nome = nome;
+        this.cidade = cidade;
     }
 
     public void adicionarJogador(Jogador jogador) {

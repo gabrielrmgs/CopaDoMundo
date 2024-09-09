@@ -1,11 +1,13 @@
 package io.programe.wordcupapi.models;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -25,7 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @ToString
 @EqualsAndHashCode
-public class Jogador {
+public class Jogador implements Serializable {
 
     @Id
     @SequenceGenerator(name = "seq", sequenceName = "seq_jogador")
@@ -41,7 +43,7 @@ public class Jogador {
     @Column(nullable = false, length = 2)
     private int numero;
 
-    @OneToOne
+    @ManyToOne
     private Time clube;
 
     public Jogador(String nome, String posicao, int numero, Time clube) {
@@ -49,6 +51,12 @@ public class Jogador {
         this.posicao = posicao;
         this.numero = numero;
         this.clube = clube;
+    }
+
+    public Jogador(String nome, String posicao, int numero) {
+        this.nome = nome;
+        this.posicao = posicao;
+        this.numero = numero;
     }
 
 }
